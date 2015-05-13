@@ -1,4 +1,17 @@
 (function(stopwatch){
+    var Observable = function(){
+        this.observers = {};
+    };
+    Observable.prototype.on = function(event, callback){
+        (this.observers[event] = this.observers[event] || []).push(callback);
+    };
+    Observable.prototype.emit = function(event){
+        var data = Array.prototype.slice.call(arguments, 1);
+        (this.observers[event] || []).forEach(function(observer){
+            observer.apply(undefined, data);
+        });
+    };
+
     var Game = stopwatch.Game = function(seconds){
         this.target = 1000 * seconds; // in milliseconds
         this.reset();
