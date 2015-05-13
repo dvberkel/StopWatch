@@ -28,5 +28,9 @@
         }
     });
 
+    var highScore = new stopwatch.HighScore();
+    game.on('stopped', highScore.registerScore.bind(highScore));
+    new stopwatch.HighScoreView(highScore, document.getElementById('highscore'));
+
     window.game = game;
 })(stopwatch);
