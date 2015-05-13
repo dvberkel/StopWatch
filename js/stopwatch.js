@@ -75,7 +75,7 @@
     HighScore.prototype.constructor = HighScore;
     HighScore.prototype.registerScore = function(score){
         this.best.push(score);
-        this.best.sort();
+        this.best.sort(function(a, b){ return a - b; });
         this.best.splice(this.top, 1);
         this.emit('scored');
     };
