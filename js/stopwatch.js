@@ -75,4 +75,19 @@
         this.best.sort();
         this.best.splice(this.top, 1);
     };
+
+    var HighScoreView = stopwatch.HighScoreView = function(highScore, container){
+        this.highScore = highScore;
+        this.container = container;
+        this.update();
+    };
+    HighScoreView.prototype.update = function(){
+        var container = this.container;
+        container.innerHTML = '';
+        this.highScore.best.forEach(function(score){
+            var item = document.createElement('li');
+            item.innerHTML = score;
+            container.appendChild(item);
+        });
+    };
 })(window.stopwatch = window.stopwatch || {});
