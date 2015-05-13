@@ -13,9 +13,12 @@
     };
 
     var Game = stopwatch.Game = function(seconds){
+        Observable.call(this);
         this.target = 1000 * seconds; // in milliseconds
         this.reset();
     };
+    Game.prototype = Object.create(Observable.prototype);
+    Game.prototype.constructor = Game;
     Game.prototype.current = function(){
         if (this.started) {
             return (this.stopped ? this.stopTime: this.time) - this.startTime;
