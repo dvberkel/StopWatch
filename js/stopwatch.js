@@ -1,8 +1,7 @@
 (function(stopwatch){
     var Game = stopwatch.Game = function(seconds){
         this.target = 1000 * seconds; // in milliseconds
-        this.started = false;
-        this.stopped = false;
+        this.reset();
     };
     Game.prototype.current = function(){
         if (this.started) {
@@ -28,6 +27,12 @@
     };
     Game.prototype.score = function(){
         return this.stopped ? Math.abs(this.target - (this.stopTime - this.startTime)): Number.POSITIVE_INFINITY;
+    };
+    Game.prototype.reset = function(){
+        if (this.stopped) {
+            this.started = false;
+            this.stopped = false;
+        }
     };
 
     var GameView = stopwatch.GameView = function(game, container){

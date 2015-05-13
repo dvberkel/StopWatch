@@ -22,6 +22,11 @@
             game.stop();
         }
     });
+    document.body.addEventListener('keypress', function(event){
+        if (event.charCode == 114 /* R */) {
+            game.reset();
+        }
+    });
 
     window.game = game;
 })(stopwatch);
