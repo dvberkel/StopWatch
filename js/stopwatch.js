@@ -67,18 +67,23 @@
     };
 
     var HighScore = stopwatch.HighScore = function(top){
+        Observable.call(this);
         this.top = top || 10;
         this.best = [];
     };
+    HighScore.prototype = Object.create(Observable.prototype);
+    HighScore.prototype.constructor = HighScore;
     HighScore.prototype.registerScore = function(score){
         this.best.push(score);
         this.best.sort();
         this.best.splice(this.top, 1);
+        this.emit('scored');
     };
 
     var HighScoreView = stopwatch.HighScoreView = function(highScore, container){
         this.highScore = highScore;
         this.container = container;
+        this.highScore.on('scored', this.update.bind(this));
         this.update();
     };
     HighScoreView.prototype.update = function(){
