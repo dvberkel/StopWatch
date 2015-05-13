@@ -3,7 +3,13 @@
     console.log('Ready to play!');
 
     var game = new stopwatch.Game(5);
-    new stopwatch.GameView(game, document.getElementById('stopwatch'));
+    var view = new stopwatch.GameView(game, document.getElementById('stopwatch'));
+
+    function loop(){
+        view.update();
+        requestAnimationFrame(loop);
+    }
+    loop();
 
     window.game = game;
 })(stopwatch);
