@@ -65,4 +65,14 @@
         var score = this.container.querySelector('#score');
         score.innerHTML = this.game.score();
     };
+
+    var HighScore = stopwatch.HighScore = function(top){
+        this.top = top || 10;
+        this.best = [];
+    };
+    HighScore.prototype.registerScore = function(score){
+        this.best.push(score);
+        this.best.sort();
+        this.best.splice(this.top, 1);
+    };
 })(window.stopwatch = window.stopwatch || {});
