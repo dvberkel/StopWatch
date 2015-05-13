@@ -12,5 +12,16 @@
     }
     loop();
 
+    document.body.addEventListener('keydown', function(event){
+        if (event.keyCode == 32 /* space */) {
+            game.start();
+        }
+    });
+    document.body.addEventListener('keyup', function(event){
+        if (event.keyCode == 32 /* space */) {
+            game.stop();
+        }
+    });
+
     window.game = game;
 })(stopwatch);
