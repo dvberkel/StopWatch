@@ -23,6 +23,9 @@
             this.stopTime = new Date().getTime();
         }
     };
+    Game.prototype.tick = function(){
+        this.time = new Date().getTime();
+    };
 
     var GameView = stopwatch.GameView = function(game, container){
         this.game = game;

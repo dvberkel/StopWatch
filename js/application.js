@@ -6,6 +6,7 @@
     var view = new stopwatch.GameView(game, document.getElementById('stopwatch'));
 
     function loop(){
+        game.tick();
         view.update();
         requestAnimationFrame(loop);
     }
