@@ -26,6 +26,9 @@
     Game.prototype.tick = function(){
         this.time = new Date().getTime();
     };
+    Game.prototype.score = function(){
+        return this.stopped ? Math.abs(this.target - (this.stopTime - this.startTime)): Number.POSITIVE_INFINITY;
+    };
 
     var GameView = stopwatch.GameView = function(game, container){
         this.game = game;
@@ -37,5 +40,7 @@
         target.innerHTML = this.game.target;
         var current = this.container.querySelector('#current');
         current.innerHTML = this.game.current();
+        var score = this.container.querySelector('#score');
+        score.innerHTML = this.game.score();
     };
 })(window.stopwatch = window.stopwatch || {});
