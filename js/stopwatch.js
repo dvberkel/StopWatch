@@ -36,6 +36,7 @@
         if (!this.stopped) {
             this.stopped = true;
             this.stopTime = new Date().getTime();
+            this.emit('stopped', this.score());
         }
     };
     Game.prototype.tick = function(){
